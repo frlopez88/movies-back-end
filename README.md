@@ -1,6 +1,6 @@
 ## Instructions
 Add a .env file with the variables 
 
-DATABASE_URL
+DATABASE_URL=
 
-PORT
+PORT=
