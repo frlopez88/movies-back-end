@@ -36,9 +36,9 @@ export const updateMovie = async (req, res) => {
 export const deleteMovie = async (req, res) => {
     const  id  = req.params.id;
     try {
-        const sql = 'DELETE FROM movies WHERE id=$1'
+        const sql = 'DELETE FROM movies WHERE MovieID=$1'
         const arr = [id]
-        await db.query(sql, arr);
+        const result = await db.query(sql, arr);
         res.json({ message: 'Movie deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete movie' });
