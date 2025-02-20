@@ -30,3 +30,15 @@ CREATE TABLE Earnings (
     Country VARCHAR(100),
     Revenue DECIMAL(15,2)
 );
+
+
+-- Create the Users table 
+CREATE TABLE movie_users (
+    email varchar(30) primary key,
+    name varchar(100),
+    lastName varchar(100),
+    password varchar(20)
+);
+
+
+select * from movie_users

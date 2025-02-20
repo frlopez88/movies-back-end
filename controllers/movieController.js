@@ -16,6 +16,7 @@ export const addMovie = async (req, res) => {
         const result = await db.query(sql,arr);
         res.status(200).json({message: "Movie Created"});
     } catch (error) {
+        console.log(error.message)
         res.status(500).json({ error: 'Failed to add movie' });
     }
 };
