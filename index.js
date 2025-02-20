@@ -40,4 +40,6 @@ app.use('/actors', tokenValidation, actor);
 app.use('/earnings', tokenValidation, earnings);
 app.use('/auth', authUser);
 
-app.listen(3001);
+const port = process.env.PORT || 8080
+
+app.listen(port);
