@@ -41,4 +41,13 @@ CREATE TABLE movie_users (
 );
 
 
-select * from movie_users
+select * from movie_users;
+
+
+select a.earningsid,
+        a.country,
+       a.movieid, 
+       a.revenue , 
+       b.title
+ from earnings a 
+ inner join movies b on b.movieid = a.movieid
