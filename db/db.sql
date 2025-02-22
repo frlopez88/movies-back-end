@@ -50,4 +50,6 @@ select a.earningsid,
        a.revenue , 
        b.title
  from earnings a 
- inner join movies b on b.movieid = a.movieid
+ inner join movies b on b.movieid = a.movieid;
+
+ select * from earnings

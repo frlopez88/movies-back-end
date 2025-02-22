@@ -12,11 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const tokenValidation =(req, res, next)=>{
+const tokenValidation = (req, res, next) => {
 
     const authorization = req.headers['authorization']
-    if (!authorization){
-        return res.status(400).json({message : "You need to pass a Token"})
+    if (!authorization) {
+        return res.status(400).json({ message: "You need to pass a Token" })
     }
 
     const token = authorization.replace('Bearer ', '')
@@ -25,20 +25,24 @@ const tokenValidation =(req, res, next)=>{
         const secret = process.env.KEY_SECRET
         const decodeToken = jwt.verify(token, secret)
         next()
-    }catch(err){
-        return res.status(400).json({message : "Invalid Token"})
+    } catch (err) {
+        return res.status(400).json({ message: "Invalid Token" })
     }
-    
 
-    
+
+
 }
 
 
 // Routes
-app.use('/movies', tokenValidation , movies);
+app.use('/movies', tokenValidation, movies);
 app.use('/actors', tokenValidation, actor);
 app.use('/earnings', tokenValidation, earnings);
 app.use('/auth', authUser);
+
+app.post('/validateSesion', tokenValidation, (req, res) => {
+    res.json({ message: "Valid Token" })
+})
 
 const port = process.env.PORT || 8080
 
