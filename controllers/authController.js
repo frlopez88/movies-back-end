@@ -32,7 +32,7 @@ export const logIn = async (req, res) => {
                 data: result
             }, 
             secretKey,  // the keyword to encript data
-            { expiresIn: '1h' })
+            { expiresIn: '3h' })
 
             return res.status(200).json({token});
         } else {

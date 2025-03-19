@@ -1,3 +1,4 @@
+-- Active: 1740444211227@@127.0.0.1@5432@codex_academy@public
 -- Create the Movies table
 CREATE TABLE Movies (
     MovieID SERIAL PRIMARY KEY,
