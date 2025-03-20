@@ -6,11 +6,20 @@ import { earnings } from './routes/earningsRoute.js';
 import { authUser } from './routes/authRoute.js';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+
+import path from 'path';
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 dotenv.config()
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/auth', authUser);
 
 const tokenValidation = (req, res, next) => {
 
@@ -35,14 +44,21 @@ const tokenValidation = (req, res, next) => {
 
 
 // Routes
-app.use('/movies', tokenValidation, movies);
-app.use('/actors', tokenValidation, actor);
-app.use('/earnings', tokenValidation, earnings);
-app.use('/auth', authUser);
+app.use('/api/movies', tokenValidation, movies);
+app.use('/api/actors', tokenValidation, actor);
+app.use('/api/earnings', tokenValidation, earnings);
 
-app.post('/validateSesion', tokenValidation, (req, res) => {
+
+app.post('/api/validateSesion', tokenValidation, (req, res) => {
     res.json({ message: "Valid Token" })
 })
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html")); // React
+});
+
 
 const port = process.env.PORT || 8080
 
